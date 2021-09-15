@@ -19,12 +19,7 @@ jobs:
           distribution: adopt
 
       - name: Install ProtoBuf compiler
-        run: |
-          PROTOC_ZIP=protoc-3.14.0-linux-x86_64.zip
-          curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v3.14.0/$PROTOC_ZIP
-          sudo unzip -o $PROTOC_ZIP -d /usr/local bin/protoc
-          sudo unzip -o $PROTOC_ZIP -d /usr/local 'include/*'
-          rm -f $PROTOC_ZIP
+        run: sudo apt update && sudo apt install -y protobuf-compiler
 
       - name: Cache Gradle packages
         uses: actions/cache@v2
