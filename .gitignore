@@ -1,0 +1,5 @@
+/misc/
+/build/
+
+local.properties
+.gradle

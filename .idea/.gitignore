@@ -1,0 +1,9 @@
+shelf
+libraries
+modules
+caches
+
+workspace.xml
+modules.xml
+gradle.xml
+jsonSchemas.xml
