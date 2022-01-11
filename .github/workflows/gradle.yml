@@ -35,6 +35,12 @@ jobs:
         run: |
           chmod +x ./gradlew
           ./gradlew build
+          
+      - name: Upload JAR
+        uses: actions/upload-artifact@v2.3.1
+        with:
+          path: build/libs/*.jar
+          if-no-files-found: error
 
       - name: Cleanup Gradle cache
         run: |
