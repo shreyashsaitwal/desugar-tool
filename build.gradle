@@ -62,6 +62,8 @@ publishing {
     publications {
         mavenJava(MavenPublication) { pub ->
             project.shadow.component(pub)
+            artifact javadocJar
+            artifact sourcesJar
             pom {
                 name = 'Java Desugar tool'
                 description = 'Fork of the original desugar tool from Android: https://android.googlesource.com/platform/external/desugar/'
@@ -71,6 +73,21 @@ publishing {
                         name = 'Apache License'
                         url = 'https://android.googlesource.com/platform/external/desugar/+/refs/heads/master/NOTICE'
                     }
+                }
+                developers {
+                    developer {
+                        id = 'ccross'
+                        name = 'ccross@android.com'
+                    }
+                    developer {
+                        id = 'gavra'
+                        name = 'gavra@google.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/shreyashsaitwal/desugar-tool.git'
+                    developerConnection = 'scm:git:ssh://github.com/shreyashsaitwal/desugar-tool.git'
+                    url = 'https://github.com/shreyashsaitwal/desugar-tool'
                 }
             }
         }
