@@ -21,22 +21,7 @@ jobs:
       - name: Install ProtoBuf compiler
         run: sudo apt update && sudo apt install -y protobuf-compiler
 
-      - name: Cache Gradle packages
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
       - name: Build with Gradle
         run: |
           chmod +x ./gradlew
           ./gradlew build
-
-      - name: Cleanup Gradle cache
-        run: |
-          rm -f ~/.gradle/caches/modules-2/modules-2.lock
-          rm -f ~/.gradle/caches/modules-2/gc.properties
