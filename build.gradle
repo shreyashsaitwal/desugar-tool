@@ -6,8 +6,8 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
-group 'com.google.devtools.build.android'
-version '1.0.0'
+group = 'io.github.shreyashsaitwal'
+version = '1.0.0'
 
 repositories {
     mavenCentral()
@@ -38,6 +38,8 @@ dependencies {
 }
 
 java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
     withSourcesJar()
     withJavadocJar()
 }
@@ -45,13 +47,29 @@ java {
 publishing {
     repositories {
         mavenLocal()
+        maven {
+            name = 'OSSRH'
+            url = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+            credentials {
+                username = project.properties['ossrh.username']
+                password = project.properties['ossrh.password']
+            }
+        }
     }
 
     publications {
-        mavenJava(MavenPublication) { publication ->
-            project.shadow.component(publication)
+        mavenJava(MavenPublication) { pub ->
+            project.shadow.component(pub)
             pom {
-                name = 'Android Desugar tool'
+                name = 'Java Desugar tool'
+                description = 'Fork of the original desugar tool from Android: https://android.googlesource.com/platform/external/desugar/'
+                url = 'https://github.com/shreyashsaitwal/desugar-tool'
+                licenses {
+                    license {
+                        name = 'Apache License'
+                        url = 'https://android.googlesource.com/platform/external/desugar/+/refs/heads/master/NOTICE'
+                    }
+                }
             }
         }
     }
